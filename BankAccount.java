@@ -40,4 +40,23 @@ public class BankAccount{
       return false;
     }
   }
+    private boolean authenticate(String password){
+    if (this.password.equals(password))
+      return true;
+    return false;
+  }
+
+  public boolean transferTo(BankAccount other, double amount, String password){
+    if (!authenticate(this.password)){
+        System.out.println("Wrong Password");
+        return false;
+      }
+    if(amount >= balance){
+      return false;
+    }
+    balance -= amount;
+    other.deposit(amount);
+    return true;
+
+  }
 }
